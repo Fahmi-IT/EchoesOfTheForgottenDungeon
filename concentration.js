@@ -109,7 +109,7 @@ class EchoesGame {
         const settings = this.difficultySettings[this.difficulty];
         const totalCards = settings.rows * settings.cols;
         
-        // Check if cards to match exceeds total cards - if so, end the game
+        // Check if cards to match exceeds total cards
         if (this.cardsToMatch >= totalCards) {
             this.gameOver();
             return;
@@ -318,8 +318,7 @@ class EchoesGame {
     }
 
     updateDifficulty() {
-        // Only update the health to match new difficulty's starting health
-        // but preserve other game state
+        // Update the health to match new difficulty's starting health
         this.health = this.difficultySettings[this.difficulty].startHealth;
         this.updateDisplay();
     }
