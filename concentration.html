@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echoes of the Forgotten Dungeon</title>
+    <link rel="stylesheet" href="concentration.css">
+</head>
+<body>
+    <!-- Title Screen -->
+    <div class="title-screen" id="titleScreen">
+        <h1 class="main-title">Echoes of the<br>Forgotten Dungeon</h1>
+        <p class="subtitle">Ancient memories await your discovery...</p>
+        <button class="enter-btn" id="enterDungeon">Enter the Dungeon</button>
+    </div>
+
+    <!-- Game Container -->
+    <div class="game-container" id="gameContainer" style="display: none;">
+        <h1 class="game-title">Echoes of the Forgotten Dungeon</h1>
+        
+        <!-- Stats Panel -->
+        <div class="stats-panel">
+            <div class="stat-group">
+                <div class="stat-orb">
+                    <div class="stat-label-emoji">❤️</div>
+                    <div class="stat-value" id="health">50</div>
+                </div>
+            </div>
+            <div class="stat-group">
+                <div class="stat-orb">
+                    <div class="stat-label-emoji">🪙</div>
+                    <div class="stat-value" id="gold">0</div>
+                </div>
+            </div>
+            <div class="stat-group">
+                <div class="stat-orb">
+                    <div class="stat-label-emoji">⏳</div>
+                    <div class="stat-value" id="timer">00:00</div>
+                </div>
+            </div>
+            <div class="stat-group">
+                <div class="stat-orb">
+                    <div class="stat-label">Room</div>
+                    <div class="stat-value" id="round">1</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Difficulty Selection -->
+        <div class="difficulty-chamber">
+            <div class="chamber-title">Choose Your Path</div>
+            <div class="difficulty-runes">
+                <button class="rune-btn active" data-difficulty="easy">Novice Path</button>
+                <button class="rune-btn" data-difficulty="medium">Adept Way</button>
+                <button class="rune-btn" data-difficulty="hard">Master's Trial</button>
+            </div>
+            <div class="difficultyDescription"></div>
+        </div>
+
+        <!-- Quest Info -->
+        <div class="quest-info">
+            <div class="match-runes" id="matchRequirement">Match 2 ancient runes at a time</div>
+        </div>
+
+        <!-- Game Board -->
+        <div class="dungeon-board" id="dungeonBoard"></div>
+
+        <!-- Spell Controls -->
+        <div class="spell-controls">
+            <button class="spell-btn" id="startQuest">Begin Quest</button>
+            <button class="spell-btn" id="resetQuest">Reset Journey</button>
+        </div>
+    </div>
+
+    <!-- Death Portal (Game Over) -->
+    <div class="death-portal hidden" id="deathPortal">
+        <div class="death-scroll">
+            <h2 class="death-title">Your Journey Ends</h2>
+            <div class="final-chronicle">
+                <p>Chambers Explored: <span id="finalRounds">0</span></p>
+                <p>Ancient Gold Collected: <span id="finalGold">0</span></p>
+                <p>Time in the Dungeon: <span id="finalTime">00:00</span></p>
+            </div>
+            <button class="spell-btn" id="returnBtn">Return to the Surface</button>
+        </div>
+    </div>
+
+    <script src="concentration.js"></script>
+</body>
+</html>

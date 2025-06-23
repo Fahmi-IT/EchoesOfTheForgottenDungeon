@@ -1,0 +1,503 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cinzel', serif;
+    background: radial-gradient(ellipse at center, #2D1B69 0%, #1a0f3d 50%, #0d0620 100%);
+    min-height: 100vh;
+    color: #F7DC6F;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Animated background elements */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(78, 205, 196, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(247, 220, 111, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(78, 205, 196, 0.03) 0%, transparent 50%);
+    animation: mysticalGlow 8s ease-in-out infinite alternate;
+    z-index: -1;
+}
+
+@keyframes mysticalGlow {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.7; }
+}
+
+/* Title Screen */
+.title-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2D1B69 0%, #1a0f3d 50%, #0d0620 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    text-align: center;
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+}
+
+.title-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.main-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 700;
+    color: #F7DC6F;
+    text-shadow: 
+        0 0 10px rgba(247, 220, 111, 0.8),
+        0 0 20px rgba(247, 220, 111, 0.6),
+        0 0 30px rgba(247, 220, 111, 0.4),
+        2px 2px 0px #2D1B69,
+        4px 4px 0px rgba(45, 27, 105, 0.7);
+    margin-bottom: 20px;
+    animation: titlePulse 3s ease-in-out infinite;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: #4ECDC4;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px rgba(78, 205, 196, 0.6);
+    opacity: 0;
+    animation: fadeInUp 2s ease-out 1s forwards;
+}
+
+.enter-btn {
+    background: linear-gradient(45deg, #4ECDC4, #6ee0d6);
+    color: #2D1B69;
+    border: 3px solid #F7DC6F;
+    padding: 15px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.4s ease;
+    box-shadow: 
+        0 0 20px rgba(78, 205, 196, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    animation: fadeInUp 2s ease-out 1.5s forwards;
+}
+
+.enter-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 10px 30px rgba(78, 205, 196, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    background: linear-gradient(45deg, #F7DC6F, #fce78a);
+}
+
+@keyframes titlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Game Container */
+.game-container {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Game Title */
+.game-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: #F7DC6F;
+    text-shadow: 
+        0 0 10px rgba(247, 220, 111, 0.8),
+        2px 2px 0px #2D1B69;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Stats Panel - Following Proximity & Similarity Principles */
+.stats-panel {
+    background: linear-gradient(135deg, rgba(45, 27, 105, 0.9), rgba(26, 15, 61, 0.9));
+    border: 2px solid #4ECDC4;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    max-width: 600px;
+    box-shadow: 
+        0 0 20px rgba(78, 205, 196, 0.3),
+        inset 0 0 20px rgba(78, 205, 196, 0.1);
+}
+
+.stat-orb {
+    background: radial-gradient(circle, rgba(247, 220, 111, 0.2), rgba(78, 205, 196, 0.1));
+    border: 2px solid #F7DC6F;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    box-shadow: 0 0 15px rgba(247, 220, 111, 0.4);
+    transition: all 0.3s ease;
+}
+
+.stat-orb:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(247, 220, 111, 0.6);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #F7DC6F;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.stat-label-emoji {
+    height: 25px;
+}
+
+.stat-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #F7DC6F;
+    text-shadow: 0 0 10px rgba(247, 220, 111, 0.8);
+}
+
+/* Difficulty Selection - Following Common Fate & Closure */
+.difficulty-chamber {
+    background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(45, 27, 105, 0.2));
+    border: 2px solid #4ECDC4;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 30px auto;
+    max-width: 500px;
+}
+
+.chamber-title {
+    font-size: 1.3rem;
+    color: #4ECDC4;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.difficulty-runes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.difficulty-description {
+    padding-top: 20px;
+}
+
+.rune-btn {
+    background: linear-gradient(45deg, #2D1B69, #4a3399);
+    color: #F7DC6F;
+    border: 2px solid #4ECDC4;
+    padding: 12px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.rune-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(247, 220, 111, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.rune-btn:hover::before {
+    left: 100%;
+}
+
+.rune-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+    border-color: #F7DC6F;
+}
+
+.rune-btn.active {
+    background: linear-gradient(45deg, #F7DC6F, #fce78a);
+    color: #2D1B69;
+    border-color: #4ECDC4;
+    box-shadow: 0 0 20px rgba(247, 220, 111, 0.6);
+}
+
+/* Game Info */
+.quest-info {
+    background: rgba(78, 205, 196, 0.1);
+    border: 1px solid #4ECDC4;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+.match-runes {
+    color: #F7DC6F;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Game Board - Following Figure/Ground & Grouping */
+.dungeon-board {
+    display: grid;
+    gap: 12px;
+    justify-content: center;
+    margin: 30px auto;
+    max-width: 700px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(45, 27, 105, 0.3), rgba(13, 6, 32, 0.5));
+    border: 3px solid #4ECDC4;
+    border-radius: 20px;
+    box-shadow: 
+        0 0 30px rgba(78, 205, 196, 0.3),
+        inset 0 0 30px rgba(45, 27, 105, 0.2);
+}
+
+.dungeon-tile {
+    aspect-ratio: 1;
+    min-height: 90px;
+    background: linear-gradient(135deg, #F7DC6F, #e6c659);
+    border: 3px solid #2D1B69;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.dungeon-tile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 30%, rgba(78, 205, 196, 0.2) 50%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.dungeon-tile:hover::before {
+    opacity: 1;
+}
+
+.dungeon-tile:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 8px 25px rgba(78, 205, 196, 0.4),
+        inset 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+.dungeon-tile.revealed {
+    background: linear-gradient(135deg, #4ECDC4, #41b8ab);
+    color: #2D1B69;
+    transform: rotateY(180deg);
+    border-color: #F7DC6F;
+}
+
+.dungeon-tile.matched {
+    background: linear-gradient(135deg, #2D1B69, #4a3399);
+    color: #F7DC6F;
+    cursor: default;
+    transform: scale(0.95);
+    box-shadow: 
+        0 0 20px rgba(247, 220, 111, 0.6),
+        inset 0 0 20px rgba(247, 220, 111, 0.1);
+}
+
+.dungeon-tile.cursed {
+    background: linear-gradient(135deg, #8b0000, #dc143c);
+    animation: curse 0.6s ease-in-out;
+}
+
+@keyframes curse {
+    0%, 100% { transform: translateX(0) scale(1); }
+    25% { transform: translateX(-8px) scale(1.05); }
+    75% { transform: translateX(8px) scale(1.05); }
+}
+
+/* Control Spells */
+.spell-controls {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.spell-btn {
+    background: linear-gradient(45deg, #4ECDC4, #6ee0d6);
+    color: #2D1B69;
+    border: 2px solid #F7DC6F;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+}
+
+.spell-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(78, 205, 196, 0.5);
+    background: linear-gradient(45deg, #F7DC6F, #fce78a);
+}
+
+/* Game Over Portal */
+.death-portal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(139, 0, 0, 0.9) 0%, rgba(45, 27, 105, 0.95) 70%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1500;
+    animation: portalOpen 1s ease-out;
+}
+
+.death-scroll {
+    background: linear-gradient(135deg, #2D1B69, #1a0f3d);
+    border: 3px solid #F7DC6F;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 450px;
+    box-shadow: 
+        0 0 40px rgba(247, 220, 111, 0.6),
+        inset 0 0 30px rgba(78, 205, 196, 0.1);
+}
+
+.death-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2.2rem;
+    color: #F7DC6F;
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px rgba(247, 220, 111, 0.8);
+}
+
+.final-chronicle {
+    margin: 25px 0;
+    font-size: 1.1rem;
+    color: #4ECDC4;
+    line-height: 1.6;
+}
+
+@keyframes portalOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotate(10deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .stats-panel {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .stat-orb {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .dungeon-tile {
+        min-height: 70px;
+        font-size: 2rem;
+    }
+    
+    .difficulty-runes {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-panel {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .dungeon-tile {
+        min-height: 60px;
+        font-size: 1.8rem;
+    }
+}
